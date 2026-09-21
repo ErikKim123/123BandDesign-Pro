@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Spacing Scale" subtitle="4px base · 8px primary increment" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:24px;background:var(--color-canvas);font-family:var(--font-ui);}
+  .row{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;}
+  .sw{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .bar{background:var(--color-primary);border-radius:2px;width:var(--w);height:var(--w);}
+  .n{font-size:11px;color:var(--color-steel);font-family:var(--font-mono);}
+  .t{font-size:11px;font-weight:600;color:var(--color-ink);}
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="bar" style="--w:4px"></div><span class="t">xxs</span><span class="n">4</span></div>
+    <div class="sw"><div class="bar" style="--w:8px"></div><span class="t">xs</span><span class="n">8</span></div>
+    <div class="sw"><div class="bar" style="--w:12px"></div><span class="t">sm</span><span class="n">12</span></div>
+    <div class="sw"><div class="bar" style="--w:16px"></div><span class="t">md</span><span class="n">16</span></div>
+    <div class="sw"><div class="bar" style="--w:20px"></div><span class="t">lg</span><span class="n">20</span></div>
+    <div class="sw"><div class="bar" style="--w:24px"></div><span class="t">xl</span><span class="n">24</span></div>
+    <div class="sw"><div class="bar" style="--w:32px"></div><span class="t">xxl</span><span class="n">32</span></div>
+    <div class="sw"><div class="bar" style="--w:40px"></div><span class="t">xxxl</span><span class="n">40</span></div>
+    <div class="sw"><div class="bar" style="--w:48px"></div><span class="t">sec-sm</span><span class="n">48</span></div>
+    <div class="sw"><div class="bar" style="--w:64px"></div><span class="t">section</span><span class="n">64</span></div>
+  </div>
+</body></html>

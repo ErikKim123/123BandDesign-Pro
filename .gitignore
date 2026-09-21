@@ -1,0 +1,34 @@
+# Design Ref: §7 — service_role 키/.env 절대 노출 금지
+# dependencies
+node_modules/
+.pnpm-store/
+
+# env (특히 SUPABASE_SERVICE_ROLE_KEY, STRIPE/PORTONE/ANTHROPIC 키)
+.env
+.env.*
+!.env.example
+
+# build
+dist/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# logs / misc
+*.log
+.DS_Store
+.turbo/
+coverage/
+
+# playwright e2e
+test-results/
+playwright-report/
+.playwright/
+
+# Vercel CLI 링크 정보(프로젝트/조직 ID) — 로컬 전용
+.vercel
+scratch/
+
+# bkit 런타임·감사 로그 — 세션마다 바뀌고 키가 찍힐 수 있다
+.bkit/

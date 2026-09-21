@@ -1,0 +1,54 @@
+/* Design tokens: JNJ SCORE 모노크롬 (백오피스 전용, self-contained — Wolf Design System 과 별개) + Oswald */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-black font-sans antialiased;
+  }
+  /* 헤드라인은 Oswald (대문자 라우드) */
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* 시그니처 pill 버튼 */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill px-6 py-3
+           text-sm font-medium transition-colors duration-200 ease-jnj
+           focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed;
+  }
+  .btn-primary { @apply bg-black text-white hover:bg-grey-500 disabled:bg-grey-200 disabled:text-grey-400; }
+  .btn-secondary { @apply border-[1.5px] border-grey-300 text-black hover:border-grey-500 hover:bg-grey-200; }
+  .btn-sm { @apply px-4 py-2 text-[14px]; }
+
+  /* 인풋 — grey-100 fill, 8px radius, focus ring */
+  .input {
+    @apply w-full rounded-sm border border-grey-300 bg-grey-100 px-4 py-3 text-base
+           text-black placeholder:text-grey-500 transition-colors duration-200
+           focus:border-black focus:outline-none focus:shadow-focus;
+  }
+  .input-error { @apply border-danger; }
+
+  /* 라벨/배지 — ALL CAPS, tight */
+  .label-caps { @apply text-[12px] font-medium uppercase tracking-tight text-grey-500; }
+}
+
+/* 방송 중 표시 — 붉은 점이 은은하게 뛴다. 이 기능의 유일한 새 시각 요소다. */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-pulse {
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+/* 접근성: 모션 최소화 선호 시 점만 남기고 깜빡임은 끈다. */
+@media (prefers-reduced-motion: reduce) {
+  .live-pulse {
+    animation: none;
+  }
+}

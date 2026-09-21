@@ -1,0 +1,20 @@
+/* ── Wolf webfonts ──────────────────────────────────────────────
+   Display  : Instrument Serif  — elegant near-serif, substitute for PP Editorial Old (paid)
+   UI / Body: Pretendard        — Korean + Latin grotesque, the de-facto KR web font
+   Code     : JetBrains Mono    — monospace
+   NOTE: PP Editorial Old is a paid typeface and cannot be bundled. Instrument Serif
+   is the closest free near-serif. Swap the @font-face/import below if the real files arrive.
+*/
+
+/* Pretendard declared explicitly so the family resolves inside the token closure.
+   Served from jsDelivr; replace src with an uploaded file for an offline-safe build. */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/woff2/PretendardVariable.woff2") format("woff2-variations");
+}
+
+/* Display + mono via Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap");

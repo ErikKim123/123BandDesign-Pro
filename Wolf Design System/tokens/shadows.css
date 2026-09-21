@@ -1,0 +1,16 @@
+/* ── Wolf elevation tokens ──────────────────────────────────────
+   Predominantly flat with strategic depth. Default cards lean on a
+   hairline border, not shadow. Reserve elevation for mockups & overlays.
+*/
+:root {
+  --shadow-0: none;
+  --shadow-1: rgba(0, 0, 0, 0.04) 0px 1px 2px 0px;          /* hover-elevated tiles */
+  --shadow-2: rgba(0, 0, 0, 0.04) 0px 4px 12px 0px;         /* standard feature cards */
+  --shadow-3: rgba(0, 0, 0, 0.08) 0px 12px 24px -4px;       /* IDE / image mockups */
+  --shadow-4: rgba(0, 0, 0, 0.12) 0px 16px 48px -8px;       /* modals, dropdowns */
+
+  /* Transition default (per known-gaps recommendation) */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 150ms;  /* @kind other */
+  --dur-base: 200ms;  /* @kind other */
+}

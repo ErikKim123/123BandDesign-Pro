@@ -1,0 +1,14 @@
+{
+  "name": "@123band/supabase",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Supabase 스키마/마이그레이션/RLS/seed 단일 소스",
+  "scripts": {
+    "migrate": "node bootstrap.mjs",
+    "db:verify": "node verify.mjs",
+    "bootstrap": "node bootstrap.mjs"
+  },
+  "devDependencies": {
+    "pg": "^8.13.0"
+  }
+}

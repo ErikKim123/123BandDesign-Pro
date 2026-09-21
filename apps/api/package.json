@@ -1,0 +1,9 @@
+{
+  "name": "@123band/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NestJS — 결제·정산·AI 호출 등 민감 로직 (Phase 3/4 에서 구현)",
+  "dependencies": {
+    "@123band/shared": "workspace:*"
+  }
+}

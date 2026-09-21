@@ -1,0 +1,4 @@
+# Design Ref: §11.1 — 모노레포 골격 (apps/* + packages/*)
+packages:
+  - "apps/*"
+  - "packages/*"

@@ -1,0 +1,20 @@
+{
+  "name": "123band",
+  "version": "0.1.0",
+  "private": true,
+  "description": "오거나이저 입점형 마켓플레이스 — 자사/오거나이저 상품 + 티켓 + SaaS 구독 + AI 상품페이지 + 다국어",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "pnpm --filter @123band/admin dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "node --test \"packages/shared/tests/**/*.test.ts\"",
+    "lint": "pnpm -r lint",
+    "db:migrate": "node packages/supabase/bootstrap.mjs",
+    "db:bootstrap": "node packages/supabase/bootstrap.mjs",
+    "deploy:check": "node scripts/deploy-check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

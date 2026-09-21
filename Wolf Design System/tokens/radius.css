@@ -1,0 +1,12 @@
+/* ── Wolf radius tokens ─────────────────────────────────────────
+   Sober & editorial: 8px buttons, 12px cards. Pills reserved for badges.
+*/
+:root {
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;    /* buttons, inputs, code blocks */
+  --radius-lg: 12px;   /* cards, modals, panels — dominant card radius */
+  --radius-xl: 16px;   /* larger feature panels */
+  --radius-xxl: 20px;  /* featured emphasis cards */
+  --radius-full: 9999px; /* badges, rare pill tabs */
+}

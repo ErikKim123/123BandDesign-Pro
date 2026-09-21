@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Ink Neutral Ramp" subtitle="Text colors from ink to muted" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--color-canvas);font-family:var(--font-ui);}
+  .row{display:flex;gap:8px;flex-wrap:wrap;}
+  .sw{display:flex;flex-direction:column;gap:6px;}
+  .chip{width:90px;height:64px;border-radius:var(--radius-md);border:1px solid rgba(0,0,0,.06);}
+  .name{font-size:12px;font-weight:600;color:var(--color-ink);}
+  .hex{font-size:11px;color:var(--color-steel);font-family:var(--font-mono);}
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--color-ink)"></div><span class="name">ink</span><span class="hex">#1f1f1f</span></div>
+    <div class="sw"><div class="chip" style="background:var(--color-charcoal)"></div><span class="name">charcoal</span><span class="hex">#2c2c2c</span></div>
+    <div class="sw"><div class="chip" style="background:var(--color-slate)"></div><span class="name">slate</span><span class="hex">#4a4a4a</span></div>
+    <div class="sw"><div class="chip" style="background:var(--color-steel)"></div><span class="name">steel</span><span class="hex">#6a6a6a</span></div>
+    <div class="sw"><div class="chip" style="background:var(--color-stone)"></div><span class="name">stone</span><span class="hex">#8a8a8a</span></div>
+    <div class="sw"><div class="chip" style="background:var(--color-muted)"></div><span class="name">muted</span><span class="hex">#a8a8a8</span></div>
+  </div>
+</body></html>

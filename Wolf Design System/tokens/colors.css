@@ -1,0 +1,94 @@
+/* ── Wolf color tokens ──────────────────────────────────────────
+   A warm sunset system: saturated orange CTA + sunshine spectrum +
+   cream surfaces + an editorial ink neutral ramp. The sunset is the brand.
+*/
+:root {
+  /* Brand & accent */
+  --color-primary: #fa520f;          /* Wolf orange — primary CTA / active */
+  --color-primary-deep: #cc3a05;     /* pressed / emphasis */
+  --color-on-primary: #ffffff;
+
+  /* Sunshine spectrum (sunset gradient stops, dusk → dawn) */
+  --color-sunshine-300: #ffd06a;
+  --color-sunshine-500: #ffb83e;
+  --color-sunshine-700: #ffa110;
+  --color-sunshine-800: #ff8105;
+  --color-sunshine-900: #ff8a00;
+  --color-yellow-saturated: #ffd900;
+
+  /* Cream / warm neutral surfaces */
+  --color-cream: #fff8e0;
+  --color-cream-light: #fffaeb;
+  --color-cream-deeper: #fff0c2;
+  --color-beige-deep: #e6d5a8;       /* 1px border on cream surfaces */
+
+  /* Ink neutral ramp */
+  --color-ink: #1f1f1f;              /* primary text / dark CTA */
+  --color-ink-tint: #3d3d3d;
+  --color-charcoal: #2c2c2c;
+  --color-slate: #4a4a4a;
+  --color-steel: #6a6a6a;
+  --color-stone: #8a8a8a;
+  --color-muted: #a8a8a8;
+
+  /* Lines */
+  --color-hairline: #e5e5e5;
+  --color-hairline-soft: #ededed;
+  --color-hairline-strong: #c7c7c7;
+
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-surface: #fafafa;
+  --color-surface-cream: #fff8e0;
+  --color-surface-cream-soft: #fffaeb;
+  --color-surface-code: #1c1c1e;     /* dark IDE / photographic card */
+
+  /* On-surface text */
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #a8a8a8;
+  --color-on-cream: #1f1f1f;
+
+  /* Semantic */
+  --color-link: #fa520f;
+  --color-footer-cream: #fff8e0;
+
+  /* ── Semantic aliases (prefer these in UI code) ── */
+  --text-primary: var(--color-ink);
+  --text-secondary: var(--color-slate);
+  --text-tertiary: var(--color-steel);
+  --text-muted: var(--color-muted);
+  --text-on-dark: var(--color-on-dark);
+  --text-on-cream: var(--color-on-cream);
+
+  --surface-page: var(--color-canvas);
+  --surface-card: var(--color-canvas);
+  --surface-warm: var(--color-cream);
+  --surface-warm-soft: var(--color-surface-cream-soft);
+  --surface-dark: var(--color-surface-code);
+
+  --border-default: var(--color-hairline-soft);
+  --border-strong: var(--color-hairline-strong);
+  --border-warm: var(--color-beige-deep);
+
+  --accent: var(--color-primary);
+  --accent-pressed: var(--color-primary-deep);
+
+  /* Signature sunset stripe gradient */
+  --sunset-stripe: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-sunshine-800) 28%,
+    var(--color-sunshine-700) 50%,
+    var(--color-yellow-saturated) 78%,
+    var(--color-cream) 100%
+  );
+  /* Atmospheric hero sky */
+  --sunset-sky: linear-gradient(
+    180deg,
+    #ff8a00 0%,
+    var(--color-sunshine-700) 32%,
+    var(--color-sunshine-500) 58%,
+    var(--color-sunshine-300) 80%,
+    var(--color-cream) 100%
+  );
+}

@@ -1,0 +1,467 @@
+/* Design Ref: Wolf Design System — 선셋 테마(오렌지·크림·잉크). 폰트는 Pretendard(next/font 자가호스팅) + JetBrains Mono(코드) */
+
+/* Pretendard 는 next/font/local(app/fonts.ts)로 자가호스팅 → 여기 @font-face 불필요(렌더차단/FOUT 제거). */
+/* 코드(JetBrains Mono) — Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-black font-sans antialiased;
+  }
+  /* 헤드라인 — Pretendard, 굵기로 위계 (가독성 우선) */
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-semibold;
+  }
+}
+
+@layer components {
+  /* 시그니처 버튼 — 8px radius (pill 은 배지 전용) */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3
+           text-sm font-medium transition-colors duration-200 ease-jnj
+           focus-visible:outline-none focus-visible:shadow-focus disabled:cursor-not-allowed;
+  }
+  /* 주 CTA — 123Band 오렌지 */
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-deep disabled:bg-grey-200 disabled:text-grey-400;
+  }
+  /* 보조 — 헤어라인 보더, hover 시 크림 */
+  .btn-secondary {
+    @apply border border-grey-300 text-black hover:border-ink hover:bg-cream;
+  }
+  /* 잉크(다크) CTA */
+  .btn-ink {
+    @apply bg-ink text-white hover:bg-grey-800;
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-[14px];
+  }
+
+  /* 라벨/배지 — ALL CAPS, 트래킹 */
+  .label-caps {
+    @apply text-[11px] font-semibold uppercase tracking-[1px] text-grey-500;
+  }
+
+  /* 폼 인풋 — 흰 fill, 오렌지 focus */
+  .input {
+    @apply block w-full rounded-md border border-grey-300 bg-white px-4 py-3 text-base
+           text-black placeholder:text-grey-400 transition-colors duration-200
+           focus:border-primary focus:outline-none focus:shadow-focus;
+  }
+
+  /* 고객몰: 콘텐츠 컨테이너 (반응형 가운데 정렬) */
+  .container-band {
+    @apply mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 섹션 제목 */
+  .section-title {
+    @apply font-display text-2xl font-bold tracking-tight md:text-3xl;
+  }
+
+  /* 상품 카드 — flat 헤어라인, hover 시 살짝 elevation */
+  .product-card {
+    @apply flex flex-col overflow-hidden rounded-lg border border-grey-200 bg-white
+           transition-shadow duration-200 hover:shadow-2;
+  }
+
+  /* 시그니처 sunset stripe — 페이지/푸터를 닫는 가로 띠 (브랜드 #1 식별자) */
+  .sunset-stripe {
+    @apply h-1.5 w-full bg-sunset-stripe;
+  }
+}
+
+/* 장바구니 담기 애니메이션 — 헤더 카트 아이콘이 튕기며 담김을 알린다 */
+@keyframes cart-bounce {
+  0% { transform: scale(1) rotate(0); }
+  25% { transform: scale(1.35) rotate(-12deg); }
+  45% { transform: scale(0.9) rotate(9deg); }
+  65% { transform: scale(1.15) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.cart-bounce {
+  animation: cart-bounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 로그인 확인 — 계정 아이콘이 팝하며 로그인 상태를 알린다.
+   로그인은 하드 내비게이션(전체 새로고침)이라 아이콘 리마운트 시 정확히 재생된다. */
+@keyframes signin-pop {
+  0% { transform: scale(0.55); }
+  55% { transform: scale(1.28); }
+  75% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+.signin-pop {
+  animation: signin-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 팝과 함께 번지는 오렌지 링 리플 (1회) */
+@keyframes signin-ring {
+  0% { transform: scale(0.5); opacity: 0.5; }
+  100% { transform: scale(2.3); opacity: 0; }
+}
+.signin-ring {
+  animation: signin-ring 0.7s ease-out forwards;
+}
+
+/* 홈 화면에 추가(A2HS) — 래드원 링 버튼의 은은한 주목 펄스 (3회 후 정지) */
+@keyframes a2hs-pulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  70% { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.a2hs-pulse {
+  animation: a2hs-pulse 2.2s ease-out 3;
+}
+
+/* 안내 토스트 진입 (아래에서 살짝 올라오며 페이드) */
+@keyframes a2hs-toast-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.a2hs-toast-in {
+  animation: a2hs-toast-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 알림 배너 진입 — 아이폰 알림처럼 화면 위에서 미끄러져 내려온다. */
+@keyframes notice-banner-in {
+  from { transform: translateY(-140%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.notice-banner-in {
+  animation: notice-banner-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* iOS 안내 시트 진입 (하단에서 슬라이드 업) */
+@keyframes a2hs-sheet-in {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.a2hs-sheet-in {
+  animation: a2hs-sheet-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 방송 중 표시 — LIVE 배지의 붉은 점이 은은하게 뛴다. 이 기능의 유일한 새 시각 요소다. */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-pulse {
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+/* 테두리 색이 빙빙 도는 실버 그라데이션 프레임. J&J 참가 신청 섹션이 쓴다 —
+   페이지에서 이것 하나만 움직여서 '지금 신청을 받고 있다'를 알린다.
+   한 바퀴에 실버 반, 선셋 오렌지 반 — 은색 광택과 주황 광택이 번갈아 지나간다.
+   요소를 돌리는 대신 @property 로 각도만 애니메이션한다 — 가로로 긴 상자를
+   회전시키면 도는 동안 모서리가 비기 때문이다. 미지원 브라우저에서는
+   background-color(회색)만 남아 정지된 테두리로 보인다. */
+@property --band-frame-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: true;
+}
+
+@keyframes band-frame-spin {
+  to { --band-frame-angle: 360deg; }
+}
+
+.gradient-frame {
+  /* 한 바퀴에 광택 두 개 — 앞 절반은 실버, 뒤 절반은 선셋 오렌지. 각 광택은 양옆을
+     어두운 색이 받쳐줄 때만 광택으로 읽히므로 밝은 값만 늘어놓지 않는다(밝은 은색만
+     쓰면 흰 배경에 묻혀 테두리가 끊겨 보인다).
+     실버 ↔ 오렌지 사이는 어두운 쪽(#5c5c5c ↔ #cc3a05)으로 건너간다 — 밝은 회색과
+     주황을 바로 이으면 중간이 탁한 황토색으로 뭉갠다. */
+  --band-frame-gradient: conic-gradient(
+    from var(--band-frame-angle),
+    #3d3d3d 0deg,
+    #9a9a9a 35deg,
+    #e2e2e2 70deg,
+    #f5f5f5 92deg,
+    #d0d0d0 115deg,
+    #8a8a8a 150deg,
+    #5c5c5c 175deg,
+    #cc3a05 198deg,
+    #fa520f 225deg,
+    #ff8105 255deg,
+    #ffc233 275deg,
+    #ff8105 300deg,
+    #cc3a05 325deg,
+    #3d3d3d 360deg
+  );
+  position: relative;
+  isolation: isolate;
+  border-radius: 1.25rem;
+  padding: 3px; /* 이 두께가 그대로 테두리가 된다 */
+  background-color: #9a9a9a;
+  background-image: var(--band-frame-gradient);
+  /* 눈이 따라갈 수 있는 속도. 이보다 빠르면 광택이 뭉개져 그냥 깜빡이는 것처럼 보인다. */
+  animation: band-frame-spin 5.65s linear infinite;
+}
+
+/* 테두리 바깥으로 아주 얕게만 번지는 발광 — 넓게 번지면 가장자리가 뭉개져
+   테두리가 몇 px 인지 안 보인다. 윤곽은 선명하게 두고 존재감만 준다. */
+.gradient-frame::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: var(--band-frame-gradient);
+  filter: blur(7px);
+  opacity: 0.3;
+}
+
+/* 안쪽 면 — 가운데를 덮어 테두리만 남긴다. 배경은 쓰는 쪽에서 반드시 채운다
+   (여기서 지정하면 호출부의 bg-* 유틸리티를 덮어써 버린다). */
+.gradient-frame__inner {
+  border-radius: calc(1.25rem - 3px);
+}
+
+/* 접근성: 모션 최소화 선호 시 애니메이션 비활성 */
+@media (prefers-reduced-motion: reduce) {
+  .cart-bounce,
+  .live-pulse,
+  .signin-pop,
+  .signin-ring,
+  .a2hs-pulse,
+  .a2hs-toast-in,
+  .a2hs-sheet-in,
+  .gradient-frame {
+    animation: none;
+  }
+  /* 링은 정지 상태로 남지 않도록 숨김 */
+  .signin-ring,
+  .a2hs-pulse {
+    display: none;
+  }
+}
+
+/* ── 라이브 중 CTA — J&J 대회명 아래, 방송 중일 때만 나타나는 입구.
+   1년에 며칠, 그것도 방송이 켜진 동안에만 존재하는 버튼이라 이 화면에서 가장 밝아도 된다.
+   구성은 넷: (1) 좌우로 흐르는 선셋 그라디언트 바탕, (2) 주기적으로 지나가는 광택 한 줄,
+   (3) 바깥으로 숨쉬는 오렌지 발광, (4) 흰 점에서 퍼지는 레이더 링.
+   전부 CSS 애니메이션이고 prefers-reduced-motion 에서 함께 멈춘다(파일 끝 블록). */
+
+/* 바탕 그라디언트가 좌우로 흐른다 — 붉은 쪽(경보)과 금빛 쪽(브랜드)이 번갈아 앞으로 온다. */
+@keyframes live-cta-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 발광 — 버튼 자신의 box-shadow 라 overflow:hidden 에 잘리지 않는다(자식만 잘린다). */
+@keyframes live-cta-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 6px 18px -8px rgba(250, 82, 15, 0.8),
+      0 0 0 0 rgba(255, 129, 5, 0),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  }
+  50% {
+    box-shadow:
+      0 10px 26px -6px rgba(250, 82, 15, 0.95),
+      0 0 22px -2px rgba(255, 129, 5, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  }
+}
+
+/* 광택 한 줄 — 지나간 뒤에는 한참 쉰다(계속 오가면 깜빡임으로 읽힌다). */
+@keyframes live-cta-sheen {
+  0% {
+    transform: translateX(-160%) skewX(-18deg);
+  }
+  38%,
+  100% {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+/* 레이더 링 — 흰 점에서 한 겹씩 퍼져 사라진다. '지금 나가고 있다'의 시각 신호. */
+@keyframes live-cta-radar {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  70%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.live-cta {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 0.5rem 1.05rem;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  /* 붉은 경보색 → 브랜드 오렌지 → 금빛. 220% 로 늘려 두고 위치만 움직인다. */
+  background-image: linear-gradient(
+    100deg,
+    #d30005 0%,
+    #fa520f 26%,
+    #ff8105 48%,
+    #ffa110 66%,
+    #fa520f 100%
+  );
+  background-size: 220% 100%;
+  animation:
+    live-cta-shift 6s ease-in-out infinite,
+    live-cta-glow 2.6s ease-in-out infinite;
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.live-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06) saturate(1.05);
+}
+
+.live-cta:active {
+  transform: translateY(0);
+}
+
+.live-cta:focus-visible {
+  outline: 2px solid rgba(31, 31, 31, 0.55);
+  outline-offset: 2px;
+}
+
+/* 광택 — 버튼 안쪽만 지나가도록 부모가 잘라 준다. */
+.live-cta__sheen {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 28%;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: live-cta-sheen 4.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.live-cta__dot {
+  position: relative;
+  display: inline-flex;
+  height: 0.45rem;
+  width: 0.45rem;
+  flex: none;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.95);
+}
+
+.live-cta__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  animation: live-cta-radar 1.9s ease-out infinite;
+}
+
+.live-cta__chevron {
+  flex: none;
+  opacity: 0.85;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.live-cta:hover .live-cta__chevron {
+  transform: translateY(2px);
+  opacity: 1;
+}
+
+/* 섹션 안 라이브 표시 — 대회명 아래 CTA 와 같은 연출을 그대로 쓴다.
+   다만 누르는 물건이 아니다: 이미 그 섹션에 와 있어서 갈 곳이 없다. 그래서 링크가 아니라
+   글자이고, 호버로 떠오르지도 않는다. 크기는 한 단계 작게 — 제목 옆에 붙는 배지라
+   버튼만 한 덩치면 옆의 방송 제목을 눌러 버린다. */
+.live-cta--badge {
+  padding: 0.3rem 0.72rem;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  cursor: default;
+}
+
+.live-cta--badge:hover {
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-cta,
+  .live-cta__dot::after {
+    animation: none;
+  }
+  /* 광택은 멈추면 버튼 위에 흰 띠로 남는다 — 아예 지운다. */
+  .live-cta__sheen {
+    display: none;
+  }
+  .live-cta {
+    box-shadow:
+      0 6px 18px -8px rgba(250, 82, 15, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  }
+}
+
+/* 행사 피드백 설문 — 장이 바뀔 때 새 문항이 살짝 떠오르며 들어온다(어디가 바뀌었는지 눈이 따라가게).
+   완료 체크는 한 번 튀어 '보냈다'를 확실히 알린다. */
+@keyframes fb-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fb-step-in {
+  animation: fb-step-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes fb-done-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.fb-done-pop {
+  animation: fb-done-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fb-step-in,
+  .fb-done-pop {
+    animation: none;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "band-obs-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "123Band 스위처의 앵글 지시를 받아 현장 OBS 의 씬을 바꾸는 브리지. 웹앱과 분리된 별도 패키지다(pnpm 워크스페이스에 포함되지 않는다).",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "dotenv": "^16.4.5",
+    "obs-websocket-js": "^5.0.6"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

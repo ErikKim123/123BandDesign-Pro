@@ -1,0 +1,37 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Radius & Elevation" subtitle="8px buttons, 12px cards · flat-first elevation" -->
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:24px;background:var(--color-surface);font-family:var(--font-ui);}
+  .wrap{display:flex;gap:32px;flex-wrap:wrap;}
+  .grp{display:flex;gap:14px;flex-wrap:wrap;}
+  .sw{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .box{width:60px;height:48px;background:var(--color-canvas);border:1px solid var(--color-hairline-strong);}
+  .el{width:84px;height:48px;background:var(--color-canvas);border-radius:var(--radius-lg);}
+  .t{font-size:11px;font-weight:600;color:var(--color-ink);}
+  .n{font-size:10px;color:var(--color-steel);font-family:var(--font-mono);}
+  .lbl{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--color-stone);width:100%;margin:0 0 12px;}
+</style></head>
+<body>
+  <div class="wrap">
+    <div>
+      <p class="lbl">Radius</p>
+      <div class="grp">
+        <div class="sw"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="t">sm</span><span class="n">6</span></div>
+        <div class="sw"><div class="box" style="border-radius:var(--radius-md)"></div><span class="t">md</span><span class="n">8</span></div>
+        <div class="sw"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="t">lg</span><span class="n">12</span></div>
+        <div class="sw"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="t">xl</span><span class="n">16</span></div>
+        <div class="sw"><div class="box" style="border-radius:var(--radius-full);width:48px"></div><span class="t">full</span><span class="n">pill</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="lbl">Elevation</p>
+      <div class="grp">
+        <div class="sw"><div class="el" style="border:1px solid var(--color-hairline-soft)"></div><span class="t">0 flat</span></div>
+        <div class="sw"><div class="el" style="box-shadow:var(--shadow-2)"></div><span class="t">2 card</span></div>
+        <div class="sw"><div class="el" style="box-shadow:var(--shadow-3)"></div><span class="t">3 mockup</span></div>
+        <div class="sw"><div class="el" style="box-shadow:var(--shadow-4)"></div><span class="t">4 modal</span></div>
+      </div>
+    </div>
+  </div>
+</body></html>

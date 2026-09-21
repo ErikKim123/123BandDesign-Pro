@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="760x440" name="Cards, Pass Tiers & Stats" subtitle="Surfaces, festival pass cards, editorial stat callouts" -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 28px; background: var(--color-surface); font-family: var(--font-ui); }
+  .cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; align-items: stretch; }
+  .stats { display: flex; gap: 24px; margin-top: 28px; border-top: 1px solid var(--color-hairline); padding-top: 8px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+  <script type="text/babel">
+    const { Card, PassCard, StatCell } = window.WolfDesignSystem_4d4911;
+    function Demo() {
+      return (
+        <div>
+          <div className="cards">
+            <PassCard name="1-DAY PASS" price="₩120,000" cadence="/ 1일권"
+              description="하루를 가장 가볍게"
+              perks={["1일 입장","스탠딩 구역","앱 디지털 패스"]} cta="패스 구매" />
+            <PassCard name="3-DAY PASS" price="₩290,000" cadence="/ 3일권"
+              description="가장 인기 있는 선택"
+              badge="BEST VALUE" featured
+              perks={["3일 전체 입장","전용 라운지 이용","한정 굿즈 키트"]} cta="패스 구매" />
+            <PassCard name="VIP PASS" price="₩590,000" cadence="/ 3일권"
+              description="무대 앞, 모든 것"
+              perks={["VIP 스탠딩","백스테이지 투어","웰컴 드링크 & 발렛"]} cta="패스 구매" />
+          </div>
+          <div className="stats">
+            <StatCell value="120K+" label="누적 관객" />
+            <StatCell value="48" label="라인업 아티스트" />
+            <StatCell value="3일" label="논스톱 페스티벌" />
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+  </script>
+</body>
+</html>
