@@ -21,7 +21,13 @@ Supabase(Postgres) 스키마/마이그레이션/RLS/seed 의 단일 소스. (Des
 
 ### 구축
 
-1. Supabase 대시보드 > Settings > API > **Exposed schemas** 에 `band123` 추가 (없으면 모든 요청이 PGRST106)
+1. API 노출 스키마에 `band123` 추가 (없으면 모든 요청이 PGRST106)
+   - ⚠️ 이 프로젝트는 대시보드(Data API > Exposed schemas)가 아니라 **DB 의 `authenticator` 역할 설정이 우선**한다
+     (`pgrst.db_schemas`, BATTLE·DIV 작업 때 SQL 로 넣은 것). 대시보드에서 저장해도 반영되지 않는다.
+   - 확인: `select setconfig from pg_db_role_setting s join pg_roles r on r.oid = s.setrole where r.rolname = 'authenticator';`
+   - 추가(2026-09-22 적용됨): `alter role authenticator set pgrst.db_schemas = 'public, graphql_public, div, battle, band123';`
+     그 뒤 `notify pgrst, 'reload config'; notify pgrst, 'reload schema';`
+   - 다른 서비스(BATTLE·DIV 등)가 이 값을 다시 설정할 때 `band123` 을 빠뜨리면 123Band API 가 전부 멈춘다 — 목록을 통째로 유지할 것
 2. `pnpm db:bootstrap --wolf-side` — 시험 실행(전부 적용 후 ROLLBACK). 결과 확인
 3. `pnpm db:bootstrap --wolf-side --commit` — 실제 반영(한 트랜잭션)
    - `--wolf-side`: 울프 가입 트리거가 123Band 가입을 건너뛰게 하는 변경(`wolf-side/`). 울프 저장소에도 같은 변경을 넣을 것
