@@ -80,5 +80,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   // 정적 파일/이미지 + API(route 자체 가드) 제외
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api).*)'],
+  // ir-tool·ir-editor·ir-templates: 원본 123IR Tool 처럼 로그인 없이 쓰는 IR 문서 에디터 (공개)
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api|ir-tool|ir-editor|ir-templates).*)'],
 };

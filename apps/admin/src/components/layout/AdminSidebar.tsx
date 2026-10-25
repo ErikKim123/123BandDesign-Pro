@@ -11,6 +11,7 @@ import {
   ListChecks,
   ScanLine,
   FileSignature,
+  Presentation,
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useT } from '@/lib/locale/LocaleContext';
@@ -18,7 +19,7 @@ import { LocaleSwitcher } from './LocaleSwitcher';
 import { cn } from '@/lib/utils';
 
 // Design Ref: §1.1 가이드 9개 관리 메뉴 (Phase 1 전체 활성화). 라벨은 슬러그→사전 매핑.
-const NAV: { href: string; slug: string; icon: LucideIcon; disabled?: boolean }[] = [
+const NAV: { href: string; slug: string; icon: LucideIcon; disabled?: boolean; newTab?: boolean }[] = [
   { href: '/dashboard', slug: 'dashboard', icon: LayoutDashboard },
   { href: '/desk', slug: 'desk', icon: ScanLine },
   { href: '/traffic', slug: 'traffic', icon: BarChart3 },
@@ -56,6 +57,8 @@ const NAV: { href: string; slug: string; icon: LucideIcon; disabled?: boolean }[
   { href: '/newsletter', slug: 'newsletter', icon: Mail },
   { href: '/mail-templates', slug: 'mail-templates', icon: MailCheck },
   { href: '/instagram', slug: 'instagram', icon: Instagram },
+  // 전체화면 에디터(사이드바 없음) + Blueprint 전역 CSS 가 다른 화면에 남지 않도록 새 탭으로 연다
+  { href: '/ir-tool', slug: 'ir-tool', icon: Presentation, newTab: true },
   { href: '/code-values', slug: 'code-values', icon: ListChecks },
   { href: '/settings', slug: 'settings', icon: Settings },
 ];
@@ -78,7 +81,7 @@ export function AdminSidebar({ email }: { email: string }) {
 
   const NavList = (
     <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-3">
-      {NAV.map(({ href, slug, icon: Icon, disabled }) => {
+      {NAV.map(({ href, slug, icon: Icon, disabled, newTab }) => {
         // 정확히 일치하거나 하위 경로일 때만 활성 — 접두어만 겹치는 메뉴(/jnj vs /jnj-winners)가 같이 켜지지 않게.
         const active = pathname === href || pathname.startsWith(`${href}/`);
         const label = t.nav[slug] ?? slug;
@@ -93,6 +96,7 @@ export function AdminSidebar({ email }: { email: string }) {
           <Link
             key={href}
             href={href}
+            target={newTab ? '_blank' : undefined}
             onClick={() => setOpen(false)}
             className={cn(
               'flex items-center gap-3 rounded-pill px-4 py-2.5 text-sm transition-colors duration-200',
